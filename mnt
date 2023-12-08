@@ -1,0 +1,28 @@
+class Originator:
+    def __init__(self, state):
+        self.state = state
+
+    def create_memento(self):
+        return Memento(self.state)
+
+    def restore_from_memento(self, memento):
+        self.state = memento.get_state()
+
+class Memento:
+    def __init__(self, state):
+        self.state = state
+
+    def get_state(self):
+        return self.state
+
+# Використання
+originator = Originator("Початковий стан")
+print("Початковий стан:", originator.state)
+
+memento = originator.create_memento()
+
+originator.state = "Новий стан"
+print("Новий стан:", originator.state)
+
+originator.restore_from_memento(memento)
+print("Відновлений стан:", originator.state)
